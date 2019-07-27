@@ -22,7 +22,7 @@ do
     --self-contained false \
     --output ../../dist/$id
 
-  zip -r $id.zip $id
+  # zip -r $id.zip $id
   tar -zcvf $id.tar.gz $id
   rm -rf $id
 
