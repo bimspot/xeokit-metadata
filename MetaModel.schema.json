@@ -1,0 +1,91 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/bimspot/xeokit-metadata-utils",
+  "type": "object",
+  "title": "JSON Schema for the metadata json used by the xeokit-sdk.",
+  "required": [
+    "id",
+    "projectId",
+    "metaObjects"
+  ],
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "string",
+      "title": "The Id field is populated with the name of the project.",
+      "default": "",
+      "examples": [
+        "Geldropseweg 47"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "projectId": {
+      "$id": "#/properties/projectId",
+      "type": "string",
+      "title": "The GlobalId of the project.",
+      "default": "",
+      "examples": [
+        "344O7vICcwH8qAEnwJDjSU"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "metaObjects": {
+      "$id": "#/properties/metaObjects",
+      "type": "array",
+      "title": "A list of all building elements as MetaObjects within the project",
+      "items": {
+        "$id": "#/properties/metaObjects/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "id",
+          "name",
+          "type",
+          "parent"
+        ],
+        "properties": {
+          "id": {
+            "$id": "#/properties/metaObjects/items/properties/id",
+            "type": "string",
+            "title": "The GlobalId of the building element",
+            "default": "",
+            "examples": [
+              "344O7vICcwH8qAEnwJDjSU"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "name": {
+            "$id": "#/properties/metaObjects/items/properties/name",
+            "type": "string",
+            "title": "The Name of the building element",
+            "default": "",
+            "examples": [
+              "Geldropseweg 47"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "type": {
+            "$id": "#/properties/metaObjects/items/properties/type",
+            "type": "string",
+            "title": "The IFC type of the building element, e.g. 'IfcStandardWallCase'",
+            "default": "",
+            "examples": [
+              "IfcProject"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "parent": {
+            "$id": "#/properties/metaObjects/items/properties/parent",
+            "type": "null",
+            "title": "The GlobalId of the parent element if any.",
+            "default": null,
+            "examples": [
+              null
+            ]
+          }
+        }
+      }
+    }
+  }
+}

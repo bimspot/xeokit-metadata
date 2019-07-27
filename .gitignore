@@ -1,0 +1,5 @@
+.idea
+bin
+obj
+*.zip
+*.tar.gz
