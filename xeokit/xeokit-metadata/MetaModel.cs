@@ -8,7 +8,7 @@ using Xbim.Common.Step21;
 using Xbim.Ifc;
 using Xbim.Ifc2x3.Interfaces;
 
-namespace Hierarchy {
+namespace XeokitMetadata {
   /// <summary>
   ///   The MetaObject is used to serialise the building elements within the IFC
   ///   model. It is a representation of a single element (e.g. IfcProject,

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Hierarchy {
+namespace XeokitMetadata {
   /// <summary>
   /// This command line application extracts the hierarchical structure of
   /// the building elements and creates a JSON output compatible with the
@@ -25,7 +25,7 @@ namespace Hierarchy {
         Console.WriteLine(@"
           Usage:
           
-          $ IfcHierarchy /path/to/some.ifc /path/to/output.json
+          $ xeokit-metadata /path/to/some.ifc /path/to/output.json
 
         ");
         Environment.Exit(1);
