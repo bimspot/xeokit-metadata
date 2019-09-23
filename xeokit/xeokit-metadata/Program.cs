@@ -42,8 +42,8 @@ namespace XeokitMetadata {
       var jsonPath = args[1];
 
       try {
-        var metaModel = MetaModel.FromIfc(ifcPath);
-        metaModel.ToJson(jsonPath);
+        var metaModel = MetaModel.fromIfc(ifcPath);
+        metaModel.toJson(jsonPath);
         Environment.Exit(0);
       }
       catch (Exception e) {
