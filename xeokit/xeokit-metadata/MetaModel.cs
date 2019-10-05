@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Xbim.Common.Step21;
@@ -18,22 +19,22 @@ namespace XeokitMetadata {
     /// <summary>
     ///   The GlobalId of the building element
     /// </summary>
-    public string Id;
+    public string id;
 
     /// <summary>
     ///   The Name of the building element
     /// </summary>
-    public string Name;
+    public string name;
 
     /// <summary>
     ///   The IFC type of the building element, e.g. 'IfcStandardWallCase'
     /// </summary>
-    public string Type;
+    public string type;
 
     /// <summary>
     ///   The GlobalId of the parent element if any.
     /// </summary>
-    public string Parent;
+    public string parent;
   }
 
   /// <summary>
@@ -45,17 +46,17 @@ namespace XeokitMetadata {
     /// <summary>
     ///   The Id field is populated with the name of the project.
     /// </summary>
-    public string Id;
+    public string id;
 
     /// <summary>
     ///   The GlobalId of the project.
     /// </summary>
-    public string ProjectId;
+    public string projectId;
 
     /// <summary>
     ///   A list of all building elements as MetaObjects within the project.
     /// </summary>
-    public List<MetaObject> MetaObjects;
+    public List<MetaObject> metaObjects;
 
     /// <summary>
     ///   The convenience initialiser creates and returns an instance of the
@@ -67,7 +68,7 @@ namespace XeokitMetadata {
     ///   Throws an exception if the provided IFC file is not using the 2x3
     ///   schema.
     /// </exception>
-    public static MetaModel FromIfc(string ifcPath) {
+    public static MetaModel fromIfc(string ifcPath) {
       using (var model = IfcStore.Open(ifcPath)) {
         if (model.SchemaVersion != XbimSchemaVersion.Ifc2X3)
           throw new ArgumentException(
@@ -76,11 +77,11 @@ namespace XeokitMetadata {
         var project = model.Instances.FirstOrDefault<IIfcProject>();
 
         var metaModel = new MetaModel();
-        metaModel.Id = project.Name;
-        metaModel.ProjectId = project.GlobalId;
+        metaModel.id = project.Name;
+        metaModel.projectId = project.GlobalId;
 
-        var metaObjects = ExtractHierarchy(project);
-        metaModel.MetaObjects = metaObjects;
+        var metaObjects = extractHierarchy(project);
+        metaModel.metaObjects = metaObjects;
         return metaModel;
       }
     }
@@ -97,14 +98,14 @@ namespace XeokitMetadata {
     ///   Returns a flattened list of all MetaObject-s related to the provided
     ///   IIfcObjectDefinition.
     /// </returns>
-    private static List<MetaObject> ExtractHierarchy(IIfcObjectDefinition
+    private static List<MetaObject> extractHierarchy(IIfcObjectDefinition
       objectDefinition) {
       var metaObjects = new List<MetaObject>();
 
       var parentObject = new MetaObject {
-        Id = objectDefinition.GlobalId,
-        Name = objectDefinition.Name,
-        Type = objectDefinition.GetType().Name
+        id = objectDefinition.GlobalId,
+        name = objectDefinition.Name,
+        type = objectDefinition.GetType().Name
       };
 
       metaObjects.Add(parentObject);
@@ -118,10 +119,10 @@ namespace XeokitMetadata {
 
         foreach (var element in containedElements) {
           var mo = new MetaObject {
-            Id = element.GlobalId,
-            Name = element.Name,
-            Type = element.GetType().Name,
-            Parent = spatialElement.GlobalId
+            id = element.GlobalId,
+            name = element.Name,
+            type = element.GetType().Name,
+            parent = spatialElement.GlobalId
           };
           metaObjects.Add(mo);
         }
@@ -132,7 +133,7 @@ namespace XeokitMetadata {
         .SelectMany(r => r.RelatedObjects);
 
       foreach (var item in relatedObjects) {
-        var children = ExtractHierarchy(item);
+        var children = extractHierarchy(item);
         metaObjects.AddRange(children);
       }
 
@@ -149,7 +150,7 @@ namespace XeokitMetadata {
     /// <param name="jsonPath">
     ///   The path of the output JSON file.
     /// </param>
-    public async void ToJson(string jsonPath) {
+    public void toJson(string jsonPath) {
       var contractResolver = new DefaultContractResolver {
         NamingStrategy = new CamelCaseNamingStrategy()
       };
@@ -160,7 +161,7 @@ namespace XeokitMetadata {
 
       using (var outputFile = new StreamWriter(jsonPath)) {
         var output = JsonConvert.SerializeObject(this, settings);
-        await outputFile.WriteAsync(output);
+        outputFile.Write(output);
       }
     }
   }
