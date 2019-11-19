@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Xbim.Common.Step21;
 using Xbim.Ifc;
-using Xbim.Ifc2x3.Interfaces;
+using Xbim.Ifc4.Interfaces;
 
 namespace XeokitMetadata {
   /// <summary>
@@ -70,9 +70,6 @@ namespace XeokitMetadata {
     /// </exception>
     public static MetaModel fromIfc(string ifcPath) {
       using (var model = IfcStore.Open(ifcPath)) {
-        if (model.SchemaVersion != XbimSchemaVersion.Ifc2X3)
-          throw new ArgumentException(
-            "Currently only IFC 2x3 is supported");
 
         var project = model.Instances.FirstOrDefault<IIfcProject>();
 
