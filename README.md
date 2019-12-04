@@ -2,7 +2,7 @@
 
 The `xeokit-metadata` is a multi-platform command line tool for extracting
 the structural hierarchy of the building elements within an `IFC` into the
-[metadata format of the `xeokit-sdk`][0]. Currently only IFC 2x3 is supported.
+[metadata format of the `xeokit-sdk`][0].
 
 ## Usage
 
