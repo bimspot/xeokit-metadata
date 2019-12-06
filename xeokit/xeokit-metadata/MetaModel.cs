@@ -96,13 +96,14 @@ namespace XeokitMetadata {
     ///   IIfcObjectDefinition.
     /// </returns>
     private static List<MetaObject> extractHierarchy(IIfcObjectDefinition
-      objectDefinition) {
+      objectDefinition, string parentId=null) {
       var metaObjects = new List<MetaObject>();
 
       var parentObject = new MetaObject {
         id = objectDefinition.GlobalId,
         name = objectDefinition.Name,
-        type = objectDefinition.GetType().Name
+        type = objectDefinition.GetType().Name,
+        parent = parentId
       };
 
       metaObjects.Add(parentObject);
@@ -130,7 +131,7 @@ namespace XeokitMetadata {
         .SelectMany(r => r.RelatedObjects);
 
       foreach (var item in relatedObjects) {
-        var children = extractHierarchy(item);
+        var children = extractHierarchy(item, parentObject.id);
         metaObjects.AddRange(children);
       }
 
