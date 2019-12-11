@@ -122,20 +122,46 @@ namespace XeokitMetadata {
             type = element.GetType().Name,
             parent = spatialElement.GlobalId
           };
+          
           metaObjects.Add(mo);
+          extractRelatedObjects(
+            element, 
+            ref metaObjects, 
+            mo.id);
         }
       }
 
+      extractRelatedObjects(
+        objectDefinition, 
+        ref metaObjects, 
+        parentObject.id);
+      
+      return metaObjects;
+    }
+
+    /// <summary>
+    ///   Method extracts related objects hierarchy,
+    /// then add childrens to metaObjects.
+    /// </summary>
+    /// <param name="objectDefinition">
+    ///  Accepts an IIfcObjectDefinition parameter, which related elements are
+    ///  then iterated in search for additional structure elements.
+    /// </param>
+    /// <param name="metaObjects">Reference of 'MetaObject' list</param>
+    /// <param name="parentObjId"></param>
+    private static void extractRelatedObjects(
+      IIfcObjectDefinition objectDefinition,
+      ref List<MetaObject> metaObjects, 
+      string parentObjId){
+      
       var relatedObjects = objectDefinition
         .IsDecomposedBy
         .SelectMany(r => r.RelatedObjects);
 
       foreach (var item in relatedObjects) {
-        var children = extractHierarchy(item, parentObject.id);
+        var children = extractHierarchy(item, parentObjId);
         metaObjects.AddRange(children);
       }
-
-      return metaObjects;
     }
 
     /// <summary>
