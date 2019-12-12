@@ -148,7 +148,7 @@ namespace XeokitMetadata {
     ///  then iterated in search for additional structure elements.
     /// </param>
     /// <param name="metaObjects">Reference of 'MetaObject' list</param>
-    /// <param name="parentObjId"></param>
+    /// <param name="parentObjId">Id of parent object.</param>
     private static void extractRelatedObjects(
       IIfcObjectDefinition objectDefinition,
       ref List<MetaObject> metaObjects, 
