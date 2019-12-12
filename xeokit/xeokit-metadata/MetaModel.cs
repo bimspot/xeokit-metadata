@@ -141,7 +141,7 @@ namespace XeokitMetadata {
 
     /// <summary>
     ///   Method extracts related objects hierarchy,
-    /// then add childrens to metaObjects.
+    /// then add children to metaObjects.
     /// </summary>
     /// <param name="objectDefinition">
     ///  Accepts an IIfcObjectDefinition parameter, which related elements are
