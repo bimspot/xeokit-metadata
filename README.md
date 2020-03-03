@@ -4,8 +4,11 @@ The `xeokit-metadata` is a multi-platform command line tool for extracting
 the structural hierarchy of the building elements within an `IFC` into the
 [metadata format of the `xeokit-sdk`][0].
 
-## Usage
 
+## Prerequisites
+'Microsoft.NETCore.App', version '2.2.0'
+
+## Usage
 ```
 $ wget --quiet https://github.com/bimspot/xeokit-metadata/releases/download/0.0.5/xeokit-metadata-linux-x64.tar.gz
 $ tar -zxvf xeokit-metadata-linux-x64.tar.gz
