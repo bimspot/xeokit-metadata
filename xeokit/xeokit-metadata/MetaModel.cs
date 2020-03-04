@@ -44,6 +44,30 @@ namespace XeokitMetadata {
   /// </summary>
   public struct MetaModel {
     /// <summary>
+    ///   Initializes `MetaModel` instance.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="projectId"></param>
+    /// <param name="author"></param>
+    /// <param name="createdAt"></param>
+    /// <param name="schema"></param>
+    /// <param name="creatingApplication"></param>
+    public void init(
+      string id,
+      string projectId,
+      string author,
+      string createdAt,
+      string schema,
+      string creatingApplication){
+      this.id = id;
+      this.projectId = projectId;
+      this.author = author;
+      this.createdAt = createdAt;
+      this.schema = schema;
+      this.creatingApplication = creatingApplication;
+    }
+    
+    /// <summary>
     ///   The Id field is populated with the name of the project.
     /// </summary>
     public string id;
@@ -54,33 +78,72 @@ namespace XeokitMetadata {
     public string projectId;
 
     /// <summary>
+    ///   The author of the project.
+    /// </summary>
+    public string author;
+
+    /// <summary>
+    ///   The creation date of the project.
+    /// </summary>
+    public string createdAt;
+
+    /// <summary>
+    ///   The schema of the ifc model.
+    /// </summary>
+    public string schema;
+    
+    /// <summary>
+    ///   The application with which the model was created.
+    /// </summary>
+    public string creatingApplication;
+
+    /// <summary>
     ///   A list of all building elements as MetaObjects within the project.
     /// </summary>
     public List<MetaObject> metaObjects;
-
+    
     /// <summary>
     ///   The convenience initialiser creates and returns an instance of the
     ///   MetaModel by parsing the IFC at the provided path.
     /// </summary>
     /// <param name="ifcPath">A string path of the IFC path.</param>
     /// <returns>Returns the complete MetaModel of the IFC.</returns>
-    /// <exception cref="ArgumentException">
-    ///   Throws an exception if the provided IFC file is not using the 2x3
-    ///   schema.
-    /// </exception>
     public static MetaModel fromIfc(string ifcPath) {
       using (var model = IfcStore.Open(ifcPath)) {
 
         var project = model.Instances.FirstOrDefault<IIfcProject>();
 
+        var header = model.Header;
         var metaModel = new MetaModel();
-        metaModel.id = project.Name;
-        metaModel.projectId = project.GlobalId;
+        metaModel.init(
+          project.Name,
+          project.GlobalId,
+          getAuthor(header.FileName.AuthorName),
+          header.TimeStamp,
+          header.SchemaVersion,
+          header.CreatingApplication);
 
         var metaObjects = extractHierarchy(project);
         metaModel.metaObjects = metaObjects;
         return metaModel;
       }
+    }
+
+    /// <summary>
+    ///   Method returns the names of authors in one string,
+    ///   separated by ";".
+    /// </summary>
+    /// <param name="authors">List of authors.</param>
+    /// <returns>Authors names.</returns>
+    private static string getAuthor(IList<string> authors){
+      var author = "";
+      foreach (var item in authors) {
+        author += item;
+        //separator of authors
+        if (!item.Equals(authors.Last()))
+          author += ";";
+      }
+      return author;
     }
 
     /// <summary>
@@ -95,8 +158,9 @@ namespace XeokitMetadata {
     ///   Returns a flattened list of all MetaObject-s related to the provided
     ///   IIfcObjectDefinition.
     /// </returns>
-    private static List<MetaObject> extractHierarchy(IIfcObjectDefinition
-      objectDefinition, string parentId=null) {
+    private static List<MetaObject> extractHierarchy(
+      IIfcObjectDefinition objectDefinition, 
+      string parentId=null) {
       var metaObjects = new List<MetaObject>();
 
       var parentObject = new MetaObject {
