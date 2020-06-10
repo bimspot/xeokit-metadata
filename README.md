@@ -7,7 +7,7 @@ the structural hierarchy of the building elements within an `IFC` into the
 ## Usage
 
 ```
-$ wget --quiet https://github.com/bimspot/xeokit-metadata/releases/download/0.0.5/xeokit-metadata-linux-x64.tar.gz
+$ wget --quiet https://github.com/bimspot/xeokit-metadata/releases/download/0.0.6/xeokit-metadata-linux-x64.tar.gz
 $ tar -zxvf xeokit-metadata-linux-x64.tar.gz
 $ chmod +x xeokit-metadata-linux-x64/xeokit-metadata
 $ ln -s /absolute/path/to/xeokit-metadata-linux-x64/xeokit-metadata /usr/local/bin/xeokit-metadata
