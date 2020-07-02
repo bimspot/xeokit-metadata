@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Xbim.Common.Step21;
 using Xbim.Ifc;
 using Xbim.Ifc4.Interfaces;
 
@@ -239,18 +236,27 @@ namespace XeokitMetadata {
     ///   The path of the output JSON file.
     /// </param>
     public void toJson(string jsonPath) {
+      using (var outputFile = new StreamWriter(jsonPath)) {
+        outputFile.Write(serialize());
+      }
+    }
+
+    /// <summary>
+    ///   The method serialises the MetaModel object to a JSON string.
+    /// </summary>
+    /// <returns>Returns the serialized JSON string.</returns>
+    public string serialize(){
       var contractResolver = new DefaultContractResolver {
         NamingStrategy = new CamelCaseNamingStrategy()
       };
+      
       var settings = new JsonSerializerSettings {
         ContractResolver = contractResolver,
         Formatting = Formatting.Indented
       };
-
-      using (var outputFile = new StreamWriter(jsonPath)) {
-        var output = JsonConvert.SerializeObject(this, settings);
-        outputFile.Write(output);
-      }
+      
+      var output = JsonConvert.SerializeObject(this, settings);
+      return output;
     }
   }
 }

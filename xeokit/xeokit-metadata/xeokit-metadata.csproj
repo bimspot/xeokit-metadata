@@ -2,9 +2,9 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
         <LangVersion>latest</LangVersion>
-        <PackageVersion>0.0.1</PackageVersion>
+        <PackageVersion>1.0.0</PackageVersion>
         <Title>xeokit-metadata</Title>
         <Authors>bimspot.io</Authors>
         <Copyright>BIM SPOT GmbH</Copyright>
@@ -18,8 +18,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-      <PackageReference Include="Xbim.Essentials" Version="5.1.259" />
+      <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+      <PackageReference Include="Xbim.Essentials" Version="5.1.297" />
     </ItemGroup>
 
 </Project>
