@@ -4,7 +4,7 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <LangVersion>latest</LangVersion>
-        <PackageVersion>0.0.1</PackageVersion>
+        <PackageVersion>1.0.0</PackageVersion>
         <Title>xeokit-metadata</Title>
         <Authors>bimspot.io</Authors>
         <Copyright>BIM SPOT GmbH</Copyright>

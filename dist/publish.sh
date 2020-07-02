@@ -20,7 +20,7 @@ do
     -c Release \
     -r $id \
     --self-contained false \
-    --output ../../dist/xeokit-metadata-$id
+    --output xeokit-metadata-$id
 
   # zip -r $id.zip $id
   tar -zcvf xeokit-metadata-$id.tar.gz xeokit-metadata-$id
