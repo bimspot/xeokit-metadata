@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.IO;
 using NUnit.Framework;
 using XeokitMetadata;
@@ -24,10 +23,11 @@ namespace test {
       try {
         var metaModel = MetaModel.fromIfc(ifcPath);
         var json = metaModel.serialize();
-        Debug.Assert(json.Equals(mock));
+        Assert.True(json.Equals(mock), "Data is not equal with required one.");
       }
       catch (Exception e) {
         Console.WriteLine(e);
+        Assert.True(false,e.Message);
       }
     }
   }
