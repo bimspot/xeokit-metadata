@@ -7,7 +7,7 @@ the structural hierarchy of the building elements within an `IFC` into the
 ## Usage
 
 ```
-$ wget --quiet https://github.com/bimspot/xeokit-metadata/releases/download/0.0.6/xeokit-metadata-linux-x64.tar.gz
+$ wget --quiet https://github.com/bimspot/xeokit-metadata/releases/download/1.0.0/xeokit-metadata-linux-x64.tar.gz
 $ tar -zxvf xeokit-metadata-linux-x64.tar.gz
 $ chmod +x xeokit-metadata-linux-x64/xeokit-metadata
 $ ln -s /absolute/path/to/xeokit-metadata-linux-x64/xeokit-metadata /usr/local/bin/xeokit-metadata
@@ -25,6 +25,10 @@ Example:
 {
   "id": "Geldropseweg 47",
   "projectId": "344O7vICcwH8qAEnwJDjSU",
+  "author": "developer@bimspot.io",
+  "createdAt": "2020-07-03T12:00:00",
+  "schema": "IFC4",
+  "creatingApplication": "CAD Software 20.0.0.101",
   "metaObjects": [
     {
       "id": "344O7vICcwH8qAEnwJDjSU",
