@@ -1,0 +1,40 @@
+{
+  "id": "Project Number",
+  "projectId": "2DhBypGrj1lRgVF3e4CIzL",
+  "author": "BB;balint@bimspot.io",
+  "createdAt": "2019-11-07T17:32:01",
+  "schema": "IFC2X3",
+  "creatingApplication": "20180216_1515(x64) - Exporter 19.0.0.405 - Alternate UI 19.0.0.405",
+  "metaObjects": [
+    {
+      "id": "2DhBypGrj1lRgVF3e4CIzL",
+      "name": "Project Number",
+      "type": "IfcProject",
+      "parent": null
+    },
+    {
+      "id": "2DhBypGrj1lRgVF3e4CIzN",
+      "name": "Default",
+      "type": "IfcSite",
+      "parent": "2DhBypGrj1lRgVF3e4CIzL"
+    },
+    {
+      "id": "2DhBypGrj1lRgVF3e4CIzK",
+      "name": "",
+      "type": "IfcBuilding",
+      "parent": "2DhBypGrj1lRgVF3e4CIzN"
+    },
+    {
+      "id": "2DhBypGrj1lRgVF3hxpj6I",
+      "name": "Level 0",
+      "type": "IfcBuildingStorey",
+      "parent": "2DhBypGrj1lRgVF3e4CIzK"
+    },
+    {
+      "id": "3vQmTu01b9I8vSu7Hf8HNn",
+      "name": "Basic Wall:Wall-Fnd_300Con_Footing:305297",
+      "type": "IfcWallStandardCase",
+      "parent": "2DhBypGrj1lRgVF3hxpj6I"
+    }
+  ]
+}
