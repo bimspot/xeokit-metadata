@@ -8,9 +8,9 @@
         <Title>xeokit-metadata</Title>
         <Authors>bimspot.io</Authors>
         <Copyright>BIM SPOT GmbH</Copyright>
-        <PackageProjectUrl>https://github.com/bimspot/xeokit-metadata-utils</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/bimspot/xeokit-metadata-utils/LICENSE</PackageLicenseUrl>
-        <RepositoryUrl>https://github.com/bimspot/xeokit-metadata-utils</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/bimspot/xeokit-metadata</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/bimspot/xeokit-metadata/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/bimspot/xeokit-metadata</RepositoryUrl>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
