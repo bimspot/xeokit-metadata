@@ -4,11 +4,13 @@ RuntimeIdentifiers=(
   linux-x64
   linux-musl-x64
   linux-arm
+  linux-arm64
   win-x64
   win-x86
   win-arm
   win-arm64
-  osx-x64)
+  osx-x64
+  osx.11.0-arm64)
 
 printf "Publishing Framework-dependent executable.\n\n"
 
